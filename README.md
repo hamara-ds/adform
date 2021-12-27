@@ -7,7 +7,7 @@ Repo for the advertising form site
 ---How to build:
 
 
----How to deploy
+---How to deploy:
 
 
----Gotchas
+---Gotchas:

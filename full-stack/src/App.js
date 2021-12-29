@@ -9,8 +9,11 @@ class App extends Component {
             item: '',
             tasks: []
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.taskHandleSubmit = this.taskHandleSubmit.bind(this);
+        this.taskHandleChange = this.taskHandleChange.bind(this);
+        
+        this.nameHandleSubmit = this.nameHandleSubmit.bind(this);
+        this.nameHandleChange = this.nameHandleChange.bind(this);
     }
 
     componentDidMount() {
@@ -22,7 +25,7 @@ class App extends Component {
         });
       }
 
-    handleSubmit(e) {
+    taskHandleSubmit(e) {
         e.preventDefault();
         const { item, tasks } = this.state;
 
@@ -42,21 +45,55 @@ class App extends Component {
         e.target.reset();
     }
 
-    handleChange(e) {
+    taskHandleChange(e) {
+        this.setState({
+            item: e.target.value
+        });
+    }
+
+    nameHandleSubmit(e) {
+        e.preventDefault();
+        const { item, names } = this.state;
+
+        // add the url here
+        fetch('', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: item})
+        });
+
+        this.setState({
+            item: '',
+            names: [...names, item]
+        });
+        e.target.reset();
+    }
+
+    nameHandleChange(e) {
+        // this is probably the same
         this.setState({
             item: e.target.value
         });
     }
 
     render() {
+        // you'll need to add names in here if you want to list them
         const { tasks } = this.state;
         const todos = tasks.map((value, index) => <li key={ index }>{ value }</li>);
         return (
             <div>
-                <form onSubmit={ this.handleSubmit } >
+                <form onSubmit={ this.taskHandleSubmit } >
                     <label>Task!!!!</label>
-                    <input type="text" onChange={this.handleChange}/>
-                    <button>Enter a todo</button>
+                    <input type="text" onChange={this.taskHandleChange}/>
+                    <button>Enter a name</button>
+                </form>
+                <form onSubmit={ this.nameHandleSubmit } >
+                    <label>Name!!!!</label>
+                    <input type="text" onChange={this.nameHandleChange}/>
+                    <button>Enter a name</button>
                 </form>
                 <ul>{ todos }</ul>
             </div>

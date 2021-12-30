@@ -4,31 +4,35 @@ import './App.css';
 class App extends Component {
 
     constructor(props) {
+        console.log('Constructor!!');
         super(props);
         this.state = {
             item: '',
-            tasks: []
+            tasks: [],
+            names: []
         };
-        this.taskHandleSubmit = this.taskHandleSubmit.bind(this);
-        this.taskHandleChange = this.taskHandleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         
-        this.nameHandleSubmit = this.nameHandleSubmit.bind(this);
-        this.nameHandleChange = this.nameHandleChange.bind(this);
+        // this.handleSubmit = this.nameHandleSubmit.bind(this);
+        // this.nameHandleChange = this.nameHandleChange.bind(this);
     }
 
     componentDidMount() {
+        console.log('componentDidMount!!');
         fetch('https://h2hukjth21.execute-api.us-east-1.amazonaws.com/api/tasks')
         .then(res => res.json())
         .then(json => {
             const tasks = json.map(item => item.Task)
-            this.setState({ tasks: tasks })
+            const names = json.map(item => item.Name)
+            this.setState({ tasks: tasks, names : names })
         });
       }
 
-    taskHandleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
         const { item, tasks } = this.state;
-
+        console.log('handle submit');
         fetch('https://h2hukjth21.execute-api.us-east-1.amazonaws.com/api/tasks', {
             method: 'POST',
             headers: {
@@ -37,7 +41,6 @@ class App extends Component {
             },
             body: JSON.stringify({task: item})
         });
-
         this.setState({
             item: '',
             tasks: [...tasks, item]
@@ -45,35 +48,8 @@ class App extends Component {
         e.target.reset();
     }
 
-    taskHandleChange(e) {
-        this.setState({
-            item: e.target.value
-        });
-    }
-
-    nameHandleSubmit(e) {
-        e.preventDefault();
-        const { item, names } = this.state;
-
-        // add the url here
-        fetch('', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({name: item})
-        });
-
-        this.setState({
-            item: '',
-            names: [...names, item]
-        });
-        e.target.reset();
-    }
-
-    nameHandleChange(e) {
-        // this is probably the same
+    handleChange(e) {
+        console.log(e.target.value)
         this.setState({
             item: e.target.value
         });
@@ -81,16 +57,13 @@ class App extends Component {
 
     render() {
         // you'll need to add names in here if you want to list them
-        const { tasks } = this.state;
+        const { tasks, names } = this.state;
         const todos = tasks.map((value, index) => <li key={ index }>{ value }</li>);
         return (
             <div>
                 <form onSubmit={ this.taskHandleSubmit } >
                     <label>Task!!!!</label>
                     <input type="text" onChange={this.taskHandleChange}/>
-                    <button>Enter a name</button>
-                </form>
-                <form onSubmit={ this.nameHandleSubmit } >
                     <label>Name!!!!</label>
                     <input type="text" onChange={this.nameHandleChange}/>
                     <button>Enter a name</button>

@@ -68,7 +68,12 @@ class App extends Component {
                     <input type="text" onChange={this.nameHandleChange}/>
                     <button>Enter a name</button>
                 </form>
-                <ul>{ todos }</ul>
+                <form onSubmit={ this.handleSubmit } >
+                    <label>Name</label>
+                    <input type="text" onChange={this.handleChange}/>
+                    <button>Enter a Name</button>
+                </form>
+
             </div>
         );
     }

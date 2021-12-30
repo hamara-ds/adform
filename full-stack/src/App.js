@@ -7,7 +7,8 @@ class App extends Component {
         super(props);
         this.state = {
             item: '',
-            tasks: []
+            tasks: [],
+            names: []
         };
         this.taskHandleSubmit = this.taskHandleSubmit.bind(this);
         this.taskHandleChange = this.taskHandleChange.bind(this);
@@ -95,12 +96,6 @@ class App extends Component {
                     <input type="text" onChange={this.nameHandleChange}/>
                     <button>Enter a name</button>
                 </form>
-                <form onSubmit={ this.handleSubmit } >
-                    <label>Name</label>
-                    <input type="text" onChange={this.handleChange}/>
-                    <button>Enter a Name</button>
-                </form>
-
             </div>
         );
     }

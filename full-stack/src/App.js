@@ -29,11 +29,14 @@ class App extends Component {
             },
             body: JSON.stringify({item:"", "task": task, "name": name}, null, '\t')
         });
-     //   console.log(this.State);
-     //   this.setState({
-     //       item: {"task": task, "name": name}
+    // if you want to see in your console is things are going where they should
+    // uncomment this line of code :)
+     /*   console.log(this.State);
+        this.setState({
+            item: {"task": task, "name": name}
             
-     //   })
+        })
+    */
     }
 
     handleChange(e) {

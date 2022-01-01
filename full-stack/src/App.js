@@ -7,11 +7,18 @@ class App extends Component {
         super(props);
         this.state = {
             item: "",
-            task: "",
+            task: "0",
             name: "",
             make: "",
             model: "",
-            year: ""
+            odometer: "",
+            year: "",
+            owenershipStatus: "",
+            transmission: "",
+            email: "",
+            phoneNumber: "",
+            postalCode: "",
+            country: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,7 +29,7 @@ class App extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-         const {  item, task , name, make, model, year} = this.state;
+         const { item, task, name, make, model , odometer, year, ownershipStatus, transmission, email, phoneNumber, postalCode, country} = this.state;
         console.log('handle submit');
         fetch('https://h2hukjth21.execute-api.us-east-1.amazonaws.com/api/tasks', {
             method: 'POST',
@@ -30,8 +37,7 @@ class App extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({item:"", "task": task, "name": name, "make": make, "model": model, "year": year}, null, '\t')
-        });
+            body: JSON.stringify({item:"0", "task": task, "name": name, "make": make, "model": model, "odometer": odometer, "year": year, "ownershipStatus": ownershipStatus, "transmission": transmission,"email" : email,"phoneNumber": phoneNumber, }, null, '\t')});
     // if you want to see in your console is things are going where they should
     // uncomment this line of code :)
      /*   console.log(this.State);
@@ -57,34 +63,16 @@ class App extends Component {
         return (
             <form onSubmit={ this.handleSubmit } >
                 <div>
-                    <label>Task </label>
+                    <label>Make </label>
                     <input 
                     type="text" 
                     onChange={ this.handleChange }
-                    name="task"
-                    />
-                </div>
-
-                <div>
-                    <label>Name </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="name"
-                    />
-                </div>
-
-                <div>
-                    <label>Car Make </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
                     name="make"
                     />
                 </div>
 
                 <div>
-                    <label>Car Model </label>
+                    <label>Model </label>
                     <input 
                     type="text" 
                     onChange={ this.handleChange}
@@ -93,13 +81,78 @@ class App extends Component {
                 </div>
 
                 <div>
+                    <label>Odometer </label>
+                    <input 
+                    type="number" 
+                    onChange={ this.handleChange}
+                    name="odometer"
+                    />
+                </div>
+
+                <div>
                     <label>Year </label>
                     <input 
-                    type="text" 
+                    type="number" 
                     onChange={ this.handleChange}
                     name="year"
                     />
                 </div>
+
+                <div>
+                    <label>Ownership status </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="ownershipStatus"
+                    />
+                </div>
+
+                <div>
+                    <label>Transmission </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="transmission"
+                    />
+                </div>
+
+                <div>
+                    <label>Email </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="email"
+                    />
+                </div>
+
+                <div>
+                    <label>Phone Number </label>
+                    <input 
+                    type="number" 
+                    onChange={ this.handleChange}
+                    name="phoneNumber"
+                    />
+                </div>
+
+                <div>
+                    <label>Postal code </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="postalCode"
+                    />
+                </div>
+
+                <div>
+                    <label>Country </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="country"
+                    />
+                </div>
+
+                
 
                 <div>
                 <button type="submit">Submit</button>

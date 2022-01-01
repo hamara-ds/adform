@@ -8,7 +8,10 @@ class App extends Component {
         this.state = {
             item: "",
             task: "",
-            name: ""
+            name: "",
+            make: "",
+            model: "",
+            year: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -19,7 +22,7 @@ class App extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-         const {  task , name, item} = this.state;
+         const {  item, task , name, make, model, year} = this.state;
         console.log('handle submit');
         fetch('https://h2hukjth21.execute-api.us-east-1.amazonaws.com/api/tasks', {
             method: 'POST',
@@ -27,7 +30,7 @@ class App extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({item:"", "task": task, "name": name}, null, '\t')
+            body: JSON.stringify({item:"", "task": task, "name": name, "make": make, "model": model, "year": year}, null, '\t')
         });
     // if you want to see in your console is things are going where they should
     // uncomment this line of code :)
@@ -68,6 +71,33 @@ class App extends Component {
                     type="text" 
                     onChange={ this.handleChange}
                     name="name"
+                    />
+                </div>
+
+                <div>
+                    <label>Car Make </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="make"
+                    />
+                </div>
+
+                <div>
+                    <label>Car Model </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="model"
+                    />
+                </div>
+
+                <div>
+                    <label>Year </label>
+                    <input 
+                    type="text" 
+                    onChange={ this.handleChange}
+                    name="year"
                     />
                 </div>
 

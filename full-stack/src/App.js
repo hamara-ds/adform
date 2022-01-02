@@ -24,9 +24,6 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
-
-
     handleSubmit(e) {
         e.preventDefault();
          const { item, task, name, make, model , odometer, year, ownershipStatus, transmission, email, phoneNumber, postalCode, country} = this.state;
@@ -54,112 +51,129 @@ class App extends Component {
         });
     }
 
-   
     componentDidUpdate() {
         console.log(this.state);
     }
 
     render() {
         return (
-            <form onSubmit={ this.handleSubmit } >
-                <div>
-                    <label>Make </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange }
-                    name="make"
-                    />
-                </div>
+            <><header className="formHeader">
+                <h1>Fill out this form and leave the rest to us, we </h1>
+                <h1> promise not to leave you hanging</h1>
+            </header>
+            <form onSubmit={this.handleSubmit}>
+                    <div className="main"
+                    ><h1 className="sub-main">
+                            <label>Make </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="make" />
 
-                <div>
-                    <label>Model </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="model"
-                    />
-                </div>
+                    </div>
 
-                <div>
-                    <label>Odometer </label>
-                    <input 
-                    type="number" 
-                    onChange={ this.handleChange}
-                    name="odometer"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Model </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="model" />
 
-                <div>
-                    <label>Year </label>
-                    <input 
-                    type="number" 
-                    onChange={ this.handleChange}
-                    name="year"
-                    />
-                </div>
+                    </div>
 
-                <div>
-                    <label>Ownership status </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="ownershipStatus"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Odometer </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="number"
+                            onChange={this.handleChange}
+                            name="odometer" />
+                    </div>
 
-                <div>
-                    <label>Transmission </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="transmission"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Year </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="number"
+                            onChange={this.handleChange}
+                            name="year" />
+                    </div>
 
-                <div>
-                    <label>Email </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="email"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Ownership status </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="ownershipStatus" />
+                    </div>
 
-                <div>
-                    <label>Phone Number </label>
-                    <input 
-                    type="number" 
-                    onChange={ this.handleChange}
-                    name="phoneNumber"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Transmission </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="transmission" />
+                    </div>
 
-                <div>
-                    <label>Postal code </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="postalCode"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Email </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="email" />
+                    </div>
 
-                <div>
-                    <label>Country </label>
-                    <input 
-                    type="text" 
-                    onChange={ this.handleChange}
-                    name="country"
-                    />
-                </div>
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Phone Number </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="number"
+                            onChange={this.handleChange}
+                            name="phoneNumber" />
+                    </div>
 
-                
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Postal code </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="postalCode" />
+                    </div>
 
-                <div>
-                <button type="submit">Submit</button>
-                </div>
-            
+                    <div className="main">
+                        <h1 className="sub-main">
+                            <label>Country </label>
+                        </h1>
+                        <input className="inputFeild"
+                            type="text"
+                            onChange={this.handleChange}
+                            name="country" />
+                    </div>
 
-            </form>
+
+
+                    <div className="main">
+                        <h1>
+                            <button type="submit" className="submitButton">Send</button>
+                        </h1>
+                    </div>
+
+
+                </form></>
           );
     }
 

@@ -57,10 +57,16 @@ class App extends Component {
 
     render() {
         return (
-            <><header className="formHeader">
+            
+            <><header className="App-header">
+                <h1>Selling your car?</h1> 
+                <h1>We have credible buyers</h1>
+            </header>
+                <div className="formHeader">
                 <h1>Fill out this form and leave the rest to us, we </h1>
                 <h1> promise not to leave you hanging</h1>
-            </header>
+                </div>
+            
             <form onSubmit={this.handleSubmit}>
                     <div className="main"
                     ><h1 className="sub-main">

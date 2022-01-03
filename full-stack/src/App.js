@@ -34,7 +34,7 @@ class App extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({item:"0", "task": task, "name": name, "make": make, "model": model, "odometer": odometer, "year": year, "ownershipStatus": ownershipStatus, "transmission": transmission,"email" : email,"phoneNumber": phoneNumber, }, null, '\t')});
+            body: JSON.stringify({item:"0", "task": task, "name": name, "make": make, "model": model, "odometer": odometer, "year": year, "ownershipStatus": ownershipStatus, "transmission": transmission,"email" : email,"phoneNumber": phoneNumber, "postalCode": postalCode, "country": country }, null, '\t')});
     // if you want to see in your console is things are going where they should
     // uncomment this line of code :)
      /*   console.log(this.State);

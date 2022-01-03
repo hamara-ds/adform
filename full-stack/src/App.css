@@ -72,6 +72,7 @@
   border-radius: 25px;
   border: none;
   justify-content: center;
+  justify-items: center;
 }
 
 .submitButton {

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 //import './makes.css';
 import AsyncSelect from 'react-select/async';
 
-class MakesList extends PureComponent {
+class ModelsList extends PureComponent {
     state = { selectedMake: [] }
     onChange = selectedMake => {
         this.setState({
@@ -13,7 +13,7 @@ class MakesList extends PureComponent {
 
 loadOptions=async (inputText, callback)=>{
 const response = await fetch(`http://localhost:8000/Results?Make_Name_like=${inputText}`);
-    if (inputText.length > 1) {
+    if (inputText.length > 3) {
         const json=  await response.json();
         callback(json.map(i=>({label:i.Make_Name,value: i.Make_ID})))
     } 
@@ -36,4 +36,4 @@ const response = await fetch(`http://localhost:8000/Results?Make_Name_like=${inp
     }
 }
 
-export default MakesList
+export default ModelsList

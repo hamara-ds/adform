@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
+import Dropdown from './Dropdown';
+
+//const fetch = require('node-fetch');
+
+const items= [
+    {
+        id:1,
+        value:'psdfas',
+    }
+];
+
+
+
+
 
 class App extends Component {
 
@@ -19,11 +33,22 @@ class App extends Component {
             phoneNumber: "",
             postalCode: "",
             country: "",
+    
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+  /*  componentDidMount() 
+     {
+        fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json')
+        .then(res => res.json())
+        .then(json => {
+            const Make_Name = json.map(item => item.Make_Name)
+            this.setState({ Make_Name: Make_Name })
+        });
+    }
+*/
     handleSubmit(e) {
         e.preventDefault();
          const { item, task, name, make, model , odometer, year, ownershipStatus, transmission, email, phoneNumber, postalCode, country} = this.state;
@@ -45,6 +70,10 @@ class App extends Component {
     */
     }
 
+
+    
+
+
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -57,6 +86,8 @@ class App extends Component {
 
     render() {
         return (
+
+            
             
             <><header className="App-header">
                 <h1>Selling your car?</h1> 
@@ -65,6 +96,10 @@ class App extends Component {
                 <div className="formHeader">
                 <h1>Fill out this form and leave the rest to us, we </h1>
                 <h1> promise not to leave you hanging</h1>
+                </div>
+
+                <div className="container">
+                <Dropdown title="Select a Make" items={items}/> 
                 </div>
             
             <form onSubmit={this.handleSubmit}>

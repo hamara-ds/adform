@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dropdown from './Dropdown';
+import MakesList from './MakesList'
 
-//const fetch = require('node-fetch');
 
 const items= [
     {
@@ -39,16 +38,7 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-  /*  componentDidMount() 
-     {
-        fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json')
-        .then(res => res.json())
-        .then(json => {
-            const Make_Name = json.map(item => item.Make_Name)
-            this.setState({ Make_Name: Make_Name })
-        });
-    }
-*/
+
     handleSubmit(e) {
         e.preventDefault();
          const { item, task, name, make, model , odometer, year, ownershipStatus, transmission, email, phoneNumber, postalCode, country} = this.state;
@@ -98,19 +88,22 @@ class App extends Component {
                 <h1> promise not to leave you hanging</h1>
                 </div>
 
-                <div className="container">
-                <Dropdown title="Select a Make" items={items}/> 
-                </div>
+               
+                <MakesList/>
+                
             
             <form onSubmit={this.handleSubmit}>
                     <div className="main"
                     ><h1 className="sub-main">
                             <label>Make </label>
+                            
                         </h1>
                         <input className="inputFeild"
                             type="text"
                             onChange={this.handleChange}
-                            name="make" />
+                            name="make"
+                             />
+                            
 
                     </div>
 

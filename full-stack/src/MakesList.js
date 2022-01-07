@@ -10,21 +10,20 @@ class MakesList extends PureComponent {
         })
     }
    
-
+//TODO: have the selection POST to dynamodb
 loadOptions=async (inputText, callback)=>{
 const response = await fetch(`http://localhost:8000/Results?Make_Name_like=${inputText}`);
-    if (inputText.length > 1) {
+    if (inputText.length > 1) { 
         const json=  await response.json();
-        callback(json.map(i=>({label:i.Make_Name,value: i.Make_ID})))
-    } 
-}
+        const uniqJson = [...json.reduce((map, obj) => map.set(obj.Make_ID, obj),new Map()).values()];
+        callback(uniqJson.map(i=>({label:i.Make_Name,value: i.Make_ID})))
+        } 
+    }
 
     render () {
         return(<div className='make'>
 
-           
-
-            <AsyncSelect 
+           <AsyncSelect 
             isMulti
             value={this.state.selectedMake}
             onChange={this.onChange}

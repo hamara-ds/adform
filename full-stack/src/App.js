@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import MakesList from './MakesList'
-
+import ModelsList from './ModelsList'
+import CASDropdown from './Component/CASDropdown';
 
 const items= [
     {
@@ -89,10 +90,12 @@ class App extends Component {
                 </div>
 
                
+                <CASDropdown />
+                <ModelsList/>
                 <MakesList/>
-                
             
             <form onSubmit={this.handleSubmit}>
+            
                     <div className="main"
                     ><h1 className="sub-main">
                             <label>Make </label>

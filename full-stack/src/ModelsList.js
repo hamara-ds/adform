@@ -10,12 +10,12 @@ class ModelsList extends PureComponent {
         })
     }
    
-//TODO: have this triggered by make selection
+//TODO: have this triggered by 'make' selection, See CASDropdown.js
 loadOptions=async (inputText, callback)=>{
-const response = await fetch(`http://localhost:8000/Results?Make_Name_like=${inputText}`);
-    if (inputText.length > 3) {
+const response = await fetch(`http://localhost:8000/Results?Model_Name_like=${inputText}`);
+    if (inputText.length > 0) {
         const json=  await response.json();
-        callback(json.map(i=>({label:i.Make_Name,value: i.Make_ID})))
+        callback(json.map(i=>({label:i.Model_Name,value: i.Model_ID})))
     } 
 }
 

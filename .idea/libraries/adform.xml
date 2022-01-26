@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="adform">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/function2.zip!/" />
+      <root url="jar://$PROJECT_DIR$/function.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

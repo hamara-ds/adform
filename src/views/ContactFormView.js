@@ -8,8 +8,6 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import {Controller as HookController, get, useForm} from "react-hook-form";
 import { createScope, map, transformProxies } from './helpers'
 
-console.log("hello")
-
 const scripts = [
 
 ]
@@ -20,6 +18,7 @@ const defaultValues = {
 let Controller
 
 function App() {
+    // Wraps the whole form
     const { handleSubmit, register, reset, control, setValue, getValues } = useForm({defaultValues});
     const [data, setData] = useState(null);
 
@@ -32,7 +31,7 @@ function App() {
         function onChangeHandler(e, data) {
             let year = JSON.stringify(e).substring(1, 5)
             console.log(year)
-            setValue('year', year)
+            setValue('year', year) // set this so the form knows!
             console.log(getValues())
         }
 
@@ -47,6 +46,7 @@ function App() {
                             label="Year only"
                             value={selectedDate}
                             onChange={onChangeHandler}
+                            disableFuture={true}
                         />
                     </MuiPickersUtilsProvider>
                 )}
@@ -79,6 +79,7 @@ function App() {
                         )}
                         renderInput={params => (
                             <TextField
+                                required
                                 {...params}
                                 label="Choose a make"
                                 variant="outlined"
@@ -117,6 +118,7 @@ function App() {
                             )}
                             renderInput={params => (
                                 <TextField
+                                    required
                                     {...params}
                                     label="Choose a model"
                                     variant="outlined"
@@ -136,6 +138,59 @@ function App() {
         );
     }
 
+    function EmailSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            console.log(e.target.value, data)
+            setValue('email', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState: getValues}) => (
+                    <TextField
+                        required
+                        label="E-mail"
+                        variant="outlined"
+                        type="email"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => onChangeHandler(data)}
+                name="email"
+                control={control}
+            />
+        );
+    }
+
+    function PostcodeSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('postcode', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <TextField
+                        required
+                        label="Postal Code"
+                        variant="outlined"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="postcode"
+                control={control}
+            />
+        );
+    }
+
+
     return (
         <form onSubmit={handleSubmit(data => setData(data))} className="form">
             <div>
@@ -151,6 +206,15 @@ function App() {
                     <label>Year</label>
                     <YearSelect control={control}/>
                 </section>
+                <section>
+                    <label>Email</label>
+                    <EmailSelect control={control}/>
+                </section>
+                <section>
+                    <label>Postcode</label>
+                    <PostcodeSelect control={control}/>
+                </section>
+                <input type="submit"/>
             </div>
         </form>
     );

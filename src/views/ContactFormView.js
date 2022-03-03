@@ -8,6 +8,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import {Controller as HookController, get, useForm} from "react-hook-form";
 import { createScope, map, transformProxies } from './helpers'
 
+console.log("hello")
 
 const scripts = [
 

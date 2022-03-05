@@ -25,42 +25,8 @@ function App() {
     setValue('make', 'Ford')
     setValue('model', 'F-150')
 
-    function YearSelect({ onChange: ignored, control }) {
-        const [selectedDate, handleDateChange] = useState(new Date());
 
-        function onChangeHandler(e, data) {
-            let year = JSON.stringify(e).substring(1, 5)
-            console.log(year)
-            setValue('year', year) // set this so the form knows!
-            console.log(getValues())
-        }
-
-        return (
-            <HookController
-                render={({ field: {onChange},
-                             fieldState : { invalid, isTouched, isDirty},
-                             formState}) => (
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <DatePicker
-                            views={["year"]}
-                            label="Year only"
-                            value={selectedDate}
-                            onChange={onChangeHandler}
-<<<<<<< HEAD
-
-=======
-                            disableFuture={true}
->>>>>>> 75dcc69b96c324f127e3e3c8f1ab6fe7e0b36535
-                        />
-                    </MuiPickersUtilsProvider>
-                )}
-                onChange={([, data]) => onChangeHandler}
-                name="year"
-                control={control}
-            />
-        );
-    }
-
+// MAKE FUNCTION
     function MakesSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
             setValue('make', e.label)
@@ -100,6 +66,7 @@ function App() {
         );
     }
 
+// MODEL FUNCTION
     function ModelSelect({ onChange: ignored, control }) {
         function modelOnChangeHandler(e, data) {
             setValue('model', e.label)
@@ -142,6 +109,40 @@ function App() {
         );
     }
 
+// YEAR FUNCTION
+    function YearSelect({ onChange: ignored, control }) {
+        const [selectedDate, handleDateChange] = useState(new Date());
+
+        function onChangeHandler(e, data) {
+            let year = JSON.stringify(e).substring(1, 5)
+            console.log(year)
+            setValue('year', year) // set this so the form knows!
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <DatePicker
+                            views={["year"]}
+                            label="Year only"
+                            value={selectedDate}
+                            onChange={onChangeHandler}
+                            disableFuture={true}
+                        />
+                    </MuiPickersUtilsProvider>
+                )}
+                onChange={([, data]) => onChangeHandler}
+                name="year"
+                control={control}
+            />
+        );
+    }
+
+// EMAIL FUNCTION
     function EmailSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
             console.log(e.target.value, data)
@@ -169,6 +170,198 @@ function App() {
         );
     }
 
+// MILEAGE FUNCTION
+    function MileageSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('mileage', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <TextField
+                        required
+                        label="Mileage"
+                        variant="outlined"
+                        type="number"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="mileage"
+                control={control}
+            />
+        );
+    }
+
+// TITLESTATUS FUNCTION
+    function TitleSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('title', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({
+                             field: {onChange},
+                             fieldState: {invalid, isTouched, isDirty},
+                             formState
+                         }) => (
+                    <Autocomplete
+                        options={titles}
+                        getOptionLabel={option => option.label}
+                        // getOptionSelected={(option, value) => option.make === getValues().make}
+                        renderOption={option => (
+                            <span>
+                            {option.label}
+                            </span>
+                        )}
+                        renderInput={params => (
+                            <TextField
+                                required
+                                {...params}
+                                label="Choose a title"
+                                variant="outlined"
+                            />
+                        )}
+                        defaultValue={{label: "Clear"}}
+                        onChange={(e, data) => onChangeHandler(data)}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="title"
+                control={control}
+            />
+        );
+    }
+
+//TRANSMISSION FUNCTION
+    function TransmissionSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('transmission', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({
+                             field: {onChange},
+                             fieldState: {invalid, isTouched, isDirty},
+                             formState
+                         }) => (
+                    <Autocomplete
+                options={transmissions}
+                getOptionLabel={option => option.label}
+                // getOptionSelected={(option, value) => option.make === getValues().make}
+                renderOption={option => (
+                    <span>
+                            {option.label}
+                            </span>
+                )}
+                renderInput={params => (
+                    <TextField
+                        required
+                        {...params}
+                        label="Choose a transmission"
+                        variant="outlined"
+                    />
+                )}
+                defaultValue={{label: "Automatic"}}
+                onChange={(e, data) => onChangeHandler(data)}
+            />
+        )}
+    onChange={([, data]) => data}
+    name="transmission"
+    control={control}
+    />
+);
+}
+
+//FIRST NAME FUNCTION
+    function FirstNameSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('firstName', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <TextField
+                        required
+                        label="First Name"
+                        variant="outlined"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="firstName"
+                control={control}
+            />
+        );
+    }
+
+//LAST NAME FUNCTION
+    function LastNameSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('lastName', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <TextField
+                        required
+                        label="Last Name"
+                        variant="outlined"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="lastName"
+                control={control}
+            />
+        );
+    }
+
+//PHONE NUMBER FUNCTION
+    function PhoneNumberSelect({ onChange: ignored, control }) {
+        function onChangeHandler(e, data) {
+            setValue('number', e.target.value)
+            console.log(getValues())
+        }
+
+        return (
+            <HookController
+                render={({ field: {onChange},
+                             fieldState : { invalid, isTouched, isDirty},
+                             formState}) => (
+                    <TextField
+                        required
+                        label="Phone Number"
+                        variant="outlined"
+                        type="tel"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        onChange={onChangeHandler}
+                    />
+                )}
+                onChange={([, data]) => data}
+                name="number"
+                control={control}
+            />
+        );
+    }
+
+// POSTALCODE FUNCTION
     function PostcodeSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
             setValue('postcode', e.target.value)
@@ -198,10 +391,17 @@ function App() {
     return (
         <form onSubmit={handleSubmit(data => setData(data))} className="form">
             <div>
+                <div>
+                <div>
+                <div>
                 <section>
                     <label>Make</label>
                     <MakesSelect control={control}/>
                 </section>
+                </div>
+                </div>
+                </div>
+
                 <section>
                     <label>Model</label>
                     <ModelSelect control={control}/>
@@ -211,13 +411,38 @@ function App() {
                     <YearSelect control={control}/>
                 </section>
                 <section>
-                    <label>Email</label>
-                    <EmailSelect control={control}/>
+                    <label>Mileage</label>
+                    <MileageSelect control={control}/>
+                </section>
+                <section>
+                    <label>Title Status</label>
+                    <TitleSelect control={control}/>
+                </section>
+                <section>
+                    <label>Transmission</label>
+                    <TransmissionSelect control={control}/>
+                </section>
+                <section>
+                    <label>First Name</label>
+                    <FirstNameSelect control={control}/>
+                </section>
+                <section>
+                    <label>Last Name</label>
+                    <LastNameSelect control={control}/>
+                </section>
+                <section>
+                    <label>Phone Number</label>
+                    <PhoneNumberSelect control={control}/>
                 </section>
                 <section>
                     <label>Postcode</label>
                     <PostcodeSelect control={control}/>
                 </section>
+                <section>
+                    <label>Email</label>
+                    <EmailSelect control={control}/>
+                </section>
+
                 <input type="submit"/>
             </div>
         </form>
@@ -367,6 +592,24 @@ const makes = [
     { label : "Chevy"},
     { label : "Dodge"}
 ];
+
+const transmissions = [
+    { label: "Automatic"},
+    { label: "Manual"}
+]
+
+const titles = [
+    { label: "Clear"},
+    { label: "Salvage"},
+    { label: "Junk"},
+    { label: "Bonded"},
+    { label: "Reconstructed"},
+    { label: "Affidavit"},
+    { label: "Rebuilt"},
+    { label: "Water Damage"},
+    { label: "Odometer Rollback"},
+    { label: "Dismantled"}
+]
 
 const all_model_lists = {
     "Ford" : [{ label: "F-150", make: "Ford"},

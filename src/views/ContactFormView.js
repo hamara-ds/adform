@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DateFnsUtils from '@date-io/date-fns';
@@ -200,7 +200,7 @@ function App() {
 // TITLESTATUS FUNCTION
     function TitleSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
-            setValue('title', e.target.value)
+            setValue('title', e.label)
             console.log(getValues())
         }
 
@@ -242,7 +242,7 @@ function App() {
 //TRANSMISSION FUNCTION
     function TransmissionSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
-            setValue('transmission', e.target.value)
+            setValue('transmission', e.label)
             console.log(getValues())
         }
 
@@ -334,6 +334,7 @@ function App() {
     }
 
 //PHONE NUMBER FUNCTION
+//**TODO** Get the telephone number pattern working     
     function PhoneNumberSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
             setValue('number', e.target.value)
@@ -386,6 +387,8 @@ function App() {
             />
         );
     }
+
+
 
 
     return (

@@ -254,32 +254,32 @@ function App() {
                              formState
                          }) => (
                     <Autocomplete
-                options={transmissions}
-                getOptionLabel={option => option.label}
-                // getOptionSelected={(option, value) => option.make === getValues().make}
-                renderOption={option => (
-                    <span>
+                        options={transmissions}
+                        getOptionLabel={option => option.label}
+                        // getOptionSelected={(option, value) => option.make === getValues().make}
+                        renderOption={option => (
+                            <span>
                             {option.label}
                             </span>
-                )}
-                renderInput={params => (
-                    <TextField
-                        required
-                        {...params}
-                        label="Choose a transmission"
-                        variant="outlined"
+                        )}
+                        renderInput={params => (
+                            <TextField
+                                required
+                                {...params}
+                                label="Choose a transmission"
+                                variant="outlined"
+                            />
+                        )}
+                        defaultValue={{label: "Automatic"}}
+                        onChange={(e, data) => onChangeHandler(data)}
                     />
                 )}
-                defaultValue={{label: "Automatic"}}
-                onChange={(e, data) => onChangeHandler(data)}
+                onChange={([, data]) => data}
+                name="transmission"
+                control={control}
             />
-        )}
-    onChange={([, data]) => data}
-    name="transmission"
-    control={control}
-    />
-);
-}
+        );
+    }
 
 //FIRST NAME FUNCTION
     function FirstNameSelect({ onChange: ignored, control }) {
@@ -334,7 +334,7 @@ function App() {
     }
 
 //PHONE NUMBER FUNCTION
-//**TODO** Get the telephone number pattern working     
+//**TODO** Get the telephone number pattern working
     function PhoneNumberSelect({ onChange: ignored, control }) {
         function onChangeHandler(e, data) {
             setValue('number', e.target.value)
@@ -388,21 +388,31 @@ function App() {
         );
     }
 
+    const submitForm = (data) => {
+        fetch('https://h2hukjth21.execute-api.us-east-1.amazonaws.com/api/tasks', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)})
+        console.log(data, "submitted");
+    }
 
 
 
     return (
-        <form onSubmit={handleSubmit(data => setData(data))} className="form">
+        <form onSubmit={handleSubmit(submitForm)} className="form">
             <div>
                 <div>
-                <div>
-                <div>
-                <section>
-                    <label>Make</label>
-                    <MakesSelect control={control}/>
-                </section>
-                </div>
-                </div>
+                    <div>
+                        <div>
+                            <section>
+                                <label>Make</label>
+                                <MakesSelect control={control}/>
+                            </section>
+                        </div>
+                    </div>
                 </div>
 
                 <section>

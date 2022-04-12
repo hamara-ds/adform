@@ -3,15 +3,15 @@
 const styles = [
   {
     type: 'href',
-    body: 'C:\\css\\normalize.css',
+    body: '/css/normalize.css',
   },
   {
     type: 'href',
-    body: 'C:\\css\\webflow.css',
+    body: '/css/webflow.css',
   },
   {
     type: 'href',
-    body: 'C:\\css\\autodopt.webflow.css',
+    body: '/css/autodopt.webflow.css',
   },
 ]
 
